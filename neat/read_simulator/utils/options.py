@@ -377,6 +377,12 @@ class Options(SimpleNamespace):
         """
         Some sanity checks and corrections to the options.
         """
+        # Maps YAML keys to internal attribute names (fixes mapping of mode/size parameters across types that would default to contig)
+        if hasattr(self, 'mode'):
+            self.parallel_mode = self.mode
+        if hasattr(self,'size'):
+            self.parallel_block_size = self.size
+
         if not (self.produce_bam or self.produce_vcf or self.produce_fastq):
             _LOG.error('No files would be produced, as all file types are set to false')
             sys.exit(1)
