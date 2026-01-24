@@ -45,7 +45,7 @@ class Cli:
             prog="neat", description="Run NEAT components"
         )
         self.parser.add_argument(
-            "--version",
+            "-v", "--version",
             action="version",
             version="%(prog)s {version}".format(version=__version__),
         )
